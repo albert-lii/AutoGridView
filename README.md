@@ -108,7 +108,7 @@ public class GridAdapter extends BaseGridAdapter {
         });
 
 
-   // 直接设置Adapter即可
+   // 直接设置Adapter即可（第一次可以需要setAdapter(),后续更新数据可以直接使用notifyChanged()方法）
    gridLayout.setAdapter(mAdapter);
    
    
