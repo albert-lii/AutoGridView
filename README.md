@@ -12,8 +12,10 @@ AutoGridView主要使用ViewGroup实现，可以如QQ空间中的照片那种九
 - [SUtils](https://github.com/albert-lii/SUtils) 轻量的常用的工具类库
 
 ## 演示
-先来看看效果把！ 
+先来看看效果把！  
+
 ![演示](https://github.com/albert-lii/AutoGridView/blob/master/screenshot/auto_gridview.gif)  
+
 录制的gif不是很流畅，小伙伴们可以在自己的机器上运行一下试试效果！  
 > **博客详情链接：http://blog.csdn.net/liyi1009365545/article/details/77964179**
 
