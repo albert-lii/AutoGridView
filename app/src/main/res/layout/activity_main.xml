@@ -92,8 +92,11 @@
             android:textSize="16sp" />
 
         <com.liyi.view.AutoGridView
+            android:layout_gravity="center_horizontal"
             android:id="@+id/gridLayout"
+            android:padding="5dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:background="#000" />
     </LinearLayout>
 </ScrollView>

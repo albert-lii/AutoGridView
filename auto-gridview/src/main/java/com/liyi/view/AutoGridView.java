@@ -253,9 +253,16 @@ public class AutoGridView extends ViewGroup {
             mGRBean.setChildWidth(cw);
             mGRBean.setParentWidth(cw);
         }
+        for (int i = 0; i < getChildCount(); i++) {
+            View child = getChildAt(i);
+            if (child != null) {
+                child.measure(MeasureSpec.makeMeasureSpec((int) mGRBean.getChildWidth(), MeasureSpec.EXACTLY),
+                        MeasureSpec.makeMeasureSpec((int) mGRBean.getChildHeight(), MeasureSpec.EXACTLY));
+            }
+        }
         /** 一定要测量 child ，否则 child 不显示；另外，测量 child 时，当 viewGroup 设置 padding 时，child 也会被加上 padding */
-        measureChildren(MeasureSpec.makeMeasureSpec((int) mGRBean.getChildWidth(), MeasureSpec.EXACTLY),
-                MeasureSpec.makeMeasureSpec((int) mGRBean.getChildHeight(), MeasureSpec.EXACTLY));
+//        measureChildren(MeasureSpec.makeMeasureSpec((int) mGRBean.getChildWidth(), MeasureSpec.EXACTLY),
+//                MeasureSpec.makeMeasureSpec((int) mGRBean.getChildHeight(), MeasureSpec.EXACTLY));
         if (mGRBean != null) {
             setMeasuredDimension((int) (mGRBean.getParentWidth() + getPaddingLeft() + getPaddingRight()), (int) (mGRBean.getParentHeight() + getPaddingTop() + getPaddingBottom()));
         }
