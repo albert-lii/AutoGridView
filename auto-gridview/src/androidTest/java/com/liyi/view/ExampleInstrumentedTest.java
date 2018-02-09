@@ -1,4 +1,4 @@
-package com.liyi.autogrid;
+package com.liyi.view;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

@@ -1,4 +1,4 @@
-package com.liyi.autogrid;
+package com.liyi.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -7,9 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.liyi.autogrid.model.GridHelper;
-import com.liyi.autogrid.model.GridParamBean;
-import com.liyi.autogrid.model.GridResultBean;
+import com.liyi.view.model.GridHelper;
+import com.liyi.view.model.GridParamBean;
+import com.liyi.view.model.GridResultBean;
 
 import java.lang.ref.SoftReference;
 import java.util.ArrayList;

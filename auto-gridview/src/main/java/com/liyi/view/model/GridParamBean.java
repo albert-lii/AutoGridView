@@ -1,4 +1,4 @@
-package com.liyi.autogrid.model;
+package com.liyi.view.model;
 
 
 public class GridParamBean {

@@ -1,4 +1,4 @@
-package com.liyi.autogrid;
+package com.liyi.view;
 
 
 public class GridConfig {
