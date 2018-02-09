@@ -5,8 +5,9 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 
-import com.liyi.autogrid.model.GridLogic;
+import com.liyi.autogrid.model.GridHelper;
 import com.liyi.autogrid.model.GridParamBean;
 import com.liyi.autogrid.model.GridResultBean;
 
@@ -20,19 +21,21 @@ public class AutoGridView extends ViewGroup {
     /**
      * 默认值
      */
+    // 默认网格图模式
+    public static final int DEF_GRID_MODE = GridConfig.GRID_NINE;
     // 默认网格行数
     public static final int DEF_GRID_ROW = 3;
     // 默认网络列数
     public static final int DEF_GRID_COLUMN = 3;
     // 默认网格的高度
-    public static final int DEF_GRID_HEIGHT = GridDefine.INVALID_VAL;
+    public static final int DEF_GRID_HEIGHT = GridConfig.INVALID_VAL;
     // 默认网格的横向间距
     public static final int DEF_GRID_HSPACE = 10;
     // 默认网格的纵向间距
     public static final int DEF_GRID_VSPACE = 10;
     // 网格图中，当只有一个 itemView 时，itemView 的宽与父容器可用总宽度（即去除左右 padding 后的 width ）的比
     // 此处默认 DEF_GRID_ONE_WPERCENT 为无效值，即 itemView 的宽度自适应
-    public static final float DEF_GRID_ONE_WPERCENT = GridDefine.INVALID_VAL;
+    public static final float DEF_GRID_ONE_WPERCENT = GridConfig.INVALID_VAL;
     // 网格图中，当只有一个 itemView 时，itemView 的高与父容器可用总宽度（即去除左右 padding 后的 width ）的比
     public static final float DEF_GRID_ONE_HPERCENT = 0.6f;
 
@@ -45,12 +48,12 @@ public class AutoGridView extends ViewGroup {
     private float mGridOneWidthPercent;
     private float mGridOneHeightPercent;
 
-    private GridLogic mGridLgc;
+    private GridHelper mGridHelper;
     private GridParamBean mGPBean;
-    // GridLogic 中计算结果后，返回的结果类
+    // GridHelper 中计算结果后，返回的结果类
     private GridResultBean mGRBean;
 
-    private BaseGridAdapter mAdapter;
+    private BaseAdapter mAdapter;
     private Context mContext;
     private OnItemClickListener mItemClickListener;
     // 存储 itemView ，用于复用
@@ -90,11 +93,10 @@ public class AutoGridView extends ViewGroup {
                 a.recycle();
             }
         }
-        mGridLgc = new GridLogic();
     }
 
     private void initParams() {
-        mGridMode = GridDefine.GRID_NINE;
+        mGridMode = DEF_GRID_MODE;
         mGridRow = DEF_GRID_ROW;
         mGridColumn = DEF_GRID_COLUMN;
         mGridHeight = DEF_GRID_HEIGHT;
@@ -103,15 +105,49 @@ public class AutoGridView extends ViewGroup {
         mGridOneWidthPercent = DEF_GRID_ONE_WPERCENT;
         mGridOneHeightPercent = DEF_GRID_ONE_HPERCENT;
 
+        mGridHelper = new GridHelper();
         mRecycleBin = new HashMap<String, List<SoftReference<View>>>();
     }
 
-    public void setAdapter(BaseGridAdapter adapter) {
+    public void setAdapter(BaseAdapter adapter) {
         this.mAdapter = adapter;
         removeAllViews();
         if (mAdapter != null && mAdapter.getCount() > 0) {
             addItemView();
         }
+    }
+
+    private void addItemView() {
+        if (mRecycleBin.size() > 0) {
+            mRecycleBin.clear();
+        }
+        int itemCount = mAdapter.getCount();
+        int maxCount = mGridRow * mGridColumn;
+        int childCount = itemCount > maxCount ? maxCount : itemCount;
+        for (int i = 0; i < childCount; i++) {
+            View itemView = mAdapter.getView(i, null, this);
+            /** 一定要有 LayoutParams ，addView 的时候，（ itemView 本身的 xml 的 width 和 height 设置的值，都是没效果的（变成 wrap_content ），
+             * 可能会出现控件的宽高显示偏差，所以必须设置此句）*/
+            itemView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+            String key = mGridMode + "+" + mAdapter.getItemViewType(i);
+            List<SoftReference<View>> views = mRecycleBin.get(key);
+            views = (views != null ? views : new ArrayList<SoftReference<View>>());
+            views.add(new SoftReference<View>(itemView));
+            mRecycleBin.put(key, views);
+            addItemClickListener(itemView, i);
+            addView(itemView);
+        }
+    }
+
+    private void addItemClickListener(View view, final int position) {
+        view.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mItemClickListener != null) {
+                    mItemClickListener.onItemClick(position, v);
+                }
+            }
+        });
     }
 
     /**
@@ -126,7 +162,7 @@ public class AutoGridView extends ViewGroup {
                 return;
             }
             for (int i = 0; i < itemCount; i++) {
-                String key = mGridMode + "+" + mAdapter.getViewType(i);
+                String key = mGridMode + "+" + mAdapter.getItemViewType(i);
                 // 从回收站中取出 key 类型的 view 列表
                 List<SoftReference<View>> views = mRecycleBin.get(key);
                 /** 此处做简单的缓存复用处理 */
@@ -184,39 +220,6 @@ public class AutoGridView extends ViewGroup {
         requestLayout();
     }
 
-    private void addItemView() {
-        if (mRecycleBin.size() > 0) {
-            mRecycleBin.clear();
-        }
-        int itemCount = mAdapter.getCount();
-        int maxCount = mGridRow * mGridColumn;
-        int childCount = itemCount > maxCount ? maxCount : itemCount;
-        for (int i = 0; i < childCount; i++) {
-            View itemView = mAdapter.getView(i, null, this);
-            /** 一定要有 LayoutParams ，addView 的时候，（ itemView 本身的 xml 的 width 和 height 设置的值，都是没效果的（变成 wrap_content ），
-             * 可能会出现控件的宽高显示偏差，所以必须设置此句）*/
-            itemView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-            String key = mGridMode + "+" + mAdapter.getViewType(i);
-            List<SoftReference<View>> views = mRecycleBin.get(key);
-            views = (views != null ? views : new ArrayList<SoftReference<View>>());
-            views.add(new SoftReference<View>(itemView));
-            mRecycleBin.put(key, views);
-            addItemClickListener(itemView, i);
-            addView(itemView);
-        }
-    }
-
-    private void addItemClickListener(View view, final int position) {
-        view.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mItemClickListener != null) {
-                    mItemClickListener.onItemClick(position, v);
-                }
-            }
-        });
-    }
-
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -237,12 +240,12 @@ public class AutoGridView extends ViewGroup {
                 .setGridOneHper(mGridOneHeightPercent)
                 .setItemCount(childCount)
                 .setMaxWidth(width);
-        if (mGridLgc == null) {
-            mGridLgc = new GridLogic();
+        if (mGridHelper == null) {
+            mGridHelper = new GridHelper();
         }
-        mGRBean = mGridLgc.calculateSize(mGPBean);
+        mGRBean = mGridHelper.calculateSize(mGPBean);
         // 如果只有一个 child ，且当前模式为九宫格模式，以及 GridOneWidthPercent 为自适应（即 INVALID_VAL ）
-        if (childCount == 1 && mGridMode == GridDefine.GRID_NINE && mGridOneWidthPercent == GridDefine.INVALID_VAL) {
+        if (childCount == 1 && mGridMode == GridConfig.GRID_NINE && mGridOneWidthPercent == GridConfig.INVALID_VAL) {
             View child = getChildAt(0);
             child.measure(MeasureSpec.makeMeasureSpec(width, MeasureSpec.AT_MOST),
                     MeasureSpec.makeMeasureSpec((int) mGRBean.getChildHeight(), MeasureSpec.EXACTLY));
@@ -265,7 +268,7 @@ public class AutoGridView extends ViewGroup {
         }
         int childCount = getChildCount();
         for (int i = 0; i < childCount; i++) {
-            int[] position = mGridLgc.findPosition(mGRBean, i);
+            int[] position = mGridHelper.findPosition(mGRBean, i);
             int left = (int) (getPaddingLeft() + position[1] * (mGRBean.getChildWidth() + mGridHspace));
             int top = (int) (getPaddingTop() + position[0] * (mGRBean.getChildHeight() + mGridVspqce));
             int right = (int) (left + mGRBean.getChildWidth());

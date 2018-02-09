@@ -2,9 +2,9 @@ package com.liyi.autogrid.model;
 
 
 import com.liyi.autogrid.AutoGridView;
-import com.liyi.autogrid.GridDefine;
+import com.liyi.autogrid.GridConfig;
 
-public class GridLogic {
+public class GridHelper {
 
     /**
      * 计算 item 和 parent 的宽高
@@ -24,7 +24,7 @@ public class GridLogic {
             childWidth = (maxWidth - totalHspace) / column;
             childHeight = bean.getGridHeight() != AutoGridView.DEF_GRID_HEIGHT ? bean.getGridHeight() : childWidth;
             // 判断当前网格是九宫格模式还是普通模式
-            if (bean.getGridType() == GridDefine.GRID_NINE) {
+            if (bean.getGridType() == GridConfig.GRID_NINE) {
                 // 只有一个 itemView 时
                 if (count == 1) {
                     float wp = bean.getGridOneWper();
@@ -71,7 +71,7 @@ public class GridLogic {
                     }
                 }
             }
-            // 当前模式为普通模式时
+            // 当前网格模式为普通模式时
             else {
                 if (bean.getGridRow() * bean.getGridColumn() < count) {
                     childRows = bean.getGridRow();

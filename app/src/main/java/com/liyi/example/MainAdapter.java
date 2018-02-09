@@ -3,14 +3,13 @@ package com.liyi.example;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
-
-import com.liyi.autogrid.BaseGridAdapter;
 
 import java.util.ArrayList;
 
 
-public class MainAdapter extends BaseGridAdapter {
+public class MainAdapter extends BaseAdapter {
     private ArrayList<Integer> mList;
     private boolean isNineGrid;
 
@@ -20,7 +19,7 @@ public class MainAdapter extends BaseGridAdapter {
     }
 
     @Override
-    public int getViewType(int position) {
+    public int getItemViewType(int position) {
         if (mList.size() == 1) {
             if (isNineGrid) {
                 return 0;
@@ -38,10 +37,20 @@ public class MainAdapter extends BaseGridAdapter {
     }
 
     @Override
+    public Object getItem(int position) {
+        return null;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return 0;
+    }
+
+    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ItemHolder holder = null;
         ItemHolder holder_first = null;
-        int type = getViewType(position);
+        int type = getItemViewType(position);
         if (convertView == null) {
             if (type == 0) {
                 convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_grid_pic_first, null);

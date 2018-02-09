@@ -3,8 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AutoGridView.iml" filepath="$PROJECT_DIR$/AutoGridView.iml" />
+      <module fileurl="file://E:\Android-Github\AutoGridView\AutoGridView.iml" filepath="E:\Android-Github\AutoGridView\AutoGridView.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://E:\Android-Github\AutoGridView\app\app.iml" filepath="E:\Android-Github\AutoGridView\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/auto-gridview/auto-gridview.iml" filepath="$PROJECT_DIR$/auto-gridview/auto-gridview.iml" />
+      <module fileurl="file://E:\Android-Github\AutoGridView\auto-gridview\auto-gridview.iml" filepath="E:\Android-Github\AutoGridView\auto-gridview\auto-gridview.iml" />
     </modules>
   </component>
 </project>

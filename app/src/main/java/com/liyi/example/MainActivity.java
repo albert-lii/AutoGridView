@@ -9,7 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.liyi.autogrid.AutoGridView;
-import com.liyi.autogrid.GridDefine;
+import com.liyi.autogrid.GridConfig;
 
 import java.util.ArrayList;
 
@@ -69,11 +69,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_nine:
-                gridLayout.setGridMode(GridDefine.GRID_NINE);
+                gridLayout.setGridMode(GridConfig.GRID_NINE);
                 tv_mode.setText("当前是九宫格模式");
                 break;
             case R.id.btn_normal:
-                gridLayout.setGridMode(GridDefine.GRID_NORMAL);
+                gridLayout.setGridMode(GridConfig.GRID_NORMAL);
                 tv_mode.setText("当前是普通模式");
                 break;
             case R.id.btn_data1:
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void update1() {
         mList.clear();
         mList.add(R.drawable.bg_ugc);
-        mAdapter.setData(mList, gridLayout.getGridMode() == GridDefine.GRID_NINE ? true : false);
+        mAdapter.setData(mList, gridLayout.getGridMode() == GridConfig.GRID_NINE ? true : false);
         gridLayout.setGridRow(3);
         gridLayout.setGridColumn(3);
         gridLayout.notifyChanged();
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mList.add(R.drawable.fennen);
         mList.add(R.drawable.heibai);
         mList.add(R.drawable.landiao);
-        mAdapter.setData(mList, gridLayout.getGridMode() == GridDefine.GRID_NINE ? true : false);
+        mAdapter.setData(mList, gridLayout.getGridMode() == GridConfig.GRID_NINE ? true : false);
         gridLayout.setGridRow(3);
         gridLayout.setGridColumn(3);
         gridLayout.notifyChanged();
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mList.add(R.drawable.heibai);
         mList.add(R.drawable.landiao);
         mList.add(R.drawable.langman);
-        mAdapter.setData(mList, gridLayout.getGridMode() == GridDefine.GRID_NINE ? true : false);
+        mAdapter.setData(mList, gridLayout.getGridMode() == GridConfig.GRID_NINE ? true : false);
         gridLayout.setGridRow(3);
         gridLayout.setGridColumn(3);
         gridLayout.notifyChanged();
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         for (int i = 0; i < 9; i++) {
             mList.add(R.drawable.huaijiu);
         }
-        mAdapter.setData(mList, gridLayout.getGridMode() == GridDefine.GRID_NINE ? true : false);
+        mAdapter.setData(mList, gridLayout.getGridMode() == GridConfig.GRID_NINE ? true : false);
         gridLayout.setGridRow(4);
         gridLayout.setGridColumn(4);
         gridLayout.notifyChanged();
@@ -151,8 +151,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void addPic() {
         mList.add(R.drawable.langman);
         mAdapter.setData(mList, false);
-        if (gridLayout.getGridMode() == GridDefine.GRID_NINE) {
-            gridLayout.setGridMode(GridDefine.GRID_NORMAL);
+        if (gridLayout.getGridMode() == GridConfig.GRID_NINE) {
+            gridLayout.setGridMode(GridConfig.GRID_NORMAL);
         }
         gridLayout.notifyChanged();
         tv_mode.setText("当前是普通模式");
