@@ -91,8 +91,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 
-[jcentersvg]: https://img.shields.io/badge/Jcenter-1.0.6-brightgreen.svg
-[releasesvg]: https://img.shields.io/badge/release-v1.0.6-0f80c1.svg
+[jcentersvg]: https://img.shields.io/badge/Jcenter-1.0.1-brightgreen.svg
+[releasesvg]: https://img.shields.io/badge/release-v1.0.1-0f80c1.svg
 [apisvg]: https://img.shields.io/badge/API-9+-brightgreen.svg
 [licensesvg]: https://img.shields.io/badge/License-Apache--2.0-0f80c1.svg
 [license]:http://www.apache.org/licenses/LICENSE-2.0
