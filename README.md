@@ -54,7 +54,7 @@ AutoGridView主要使用ViewGroup实现，可以如QQ空间中的照片那种九
 2、设置适配器：gridLayout.setAdapter(mAdapter);
 
 例：
-// 直接设置Adapter即可（第一次可以需要setAdapter(),后续更新数据可以直接使用notifyChanged()方法）
+// 直接设置Adapter即可（第一次可以需要setAdapter(),后续更新数据可以直接使用AutoGridView的notifyChanged()方法）
 gridLayout.setAdapter(mAdapter);
       
 // 更新数据 
