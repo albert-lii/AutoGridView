@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void update1() {
         mList.clear();
-        mList.add(R.drawable.bg_ugc);
+        mList.add(R.mipmap.ic_launcher);
         mAdapter.setData(mList, gridLayout.getGridMode() == GridConfig.GRID_NINE ? true : false);
         gridLayout.setGridRow(3);
         gridLayout.setGridColumn(3);

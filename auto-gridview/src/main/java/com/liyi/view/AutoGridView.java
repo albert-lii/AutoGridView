@@ -37,7 +37,7 @@ public class AutoGridView extends ViewGroup {
     // 此处默认 DEF_GRID_ONE_WPERCENT 为无效值，即 itemView 的宽度自适应
     public static final float DEF_GRID_ONE_WPERCENT = GridConfig.INVALID_VAL;
     // 网格图中，当只有一个 itemView 时，itemView 的高与父容器可用总宽度（即去除左右 padding 后的 width ）的比
-    public static final float DEF_GRID_ONE_HPERCENT = 0.6f;
+    public static final float DEF_GRID_ONE_HPERCENT = GridConfig.INVALID_VAL;
 
     private int mGridMode;
     private int mGridRow;
@@ -244,22 +244,41 @@ public class AutoGridView extends ViewGroup {
             mGridHelper = new GridHelper();
         }
         mGRBean = mGridHelper.calculateSize(mGPBean);
-        // 如果只有一个 child ，且当前模式为九宫格模式，以及 GridOneWidthPercent 为自适应（即 INVALID_VAL ）
-        if (childCount == 1 && mGridMode == GridConfig.GRID_NINE && mGridOneWidthPercent == GridConfig.INVALID_VAL) {
+        // 如果只有一个 child ，且当前模式为九宫格模式
+        if (childCount == 1 && mGridMode == GridConfig.GRID_NINE) {
             View child = getChildAt(0);
-            child.measure(MeasureSpec.makeMeasureSpec(width, MeasureSpec.AT_MOST),
-                    MeasureSpec.makeMeasureSpec((int) mGRBean.getChildHeight(), MeasureSpec.EXACTLY));
+            int childWms, childHms;
+            // 宽度自适应
+            if (mGridOneWidthPercent == GridConfig.INVALID_VAL) {
+                childWms = MeasureSpec.makeMeasureSpec(width, MeasureSpec.AT_MOST);
+            } else {
+                childWms = MeasureSpec.makeMeasureSpec((int) mGRBean.getChildWidth(), MeasureSpec.EXACTLY);
+            }
+            // 高度自适应
+            if (mGridOneHeightPercent == GridConfig.INVALID_VAL) {
+                childHms = MeasureSpec.makeMeasureSpec((int) mGRBean.getChildHeight(), MeasureSpec.UNSPECIFIED);
+            } else {
+                childHms = MeasureSpec.makeMeasureSpec((int) mGRBean.getChildHeight(), MeasureSpec.EXACTLY);
+            }
+            child.measure(childWms, childHms);
+//            child.measure(MeasureSpec.makeMeasureSpec(width, MeasureSpec.AT_MOST),
+//                    MeasureSpec.makeMeasureSpec((int) mGRBean.getChildHeight(), MeasureSpec.EXACTLY));
             int cw = child.getMeasuredWidth();
+            int ch = child.getMeasuredHeight();
             mGRBean.setChildWidth(cw);
+            mGRBean.setChildHeight(ch);
             mGRBean.setParentWidth(cw);
-        }
-        for (int i = 0; i < getChildCount(); i++) {
-            View child = getChildAt(i);
-            if (child != null) {
-                child.measure(MeasureSpec.makeMeasureSpec((int) mGRBean.getChildWidth(), MeasureSpec.EXACTLY),
-                        MeasureSpec.makeMeasureSpec((int) mGRBean.getChildHeight(), MeasureSpec.EXACTLY));
+            mGRBean.setParentHeight(ch);
+        } else {
+            for (int i = 0; i < getChildCount(); i++) {
+                View child = getChildAt(i);
+                if (child != null) {
+                    child.measure(MeasureSpec.makeMeasureSpec((int) mGRBean.getChildWidth(), MeasureSpec.EXACTLY),
+                            MeasureSpec.makeMeasureSpec((int) mGRBean.getChildHeight(), MeasureSpec.EXACTLY));
+                }
             }
         }
+
         /** 一定要测量 child ，否则 child 不显示；另外，测量 child 时，当 viewGroup 设置 padding 时，child 也会被加上 padding */
 //        measureChildren(MeasureSpec.makeMeasureSpec((int) mGRBean.getChildWidth(), MeasureSpec.EXACTLY),
 //                MeasureSpec.makeMeasureSpec((int) mGRBean.getChildHeight(), MeasureSpec.EXACTLY));

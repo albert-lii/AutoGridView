@@ -9,7 +9,7 @@ def support_version = "25.3.1"
 def min_sdk_version = 9
 def target_sdk_version = 25
 def version_code = 2
-def version_name = "1.0.1"
+def version_name = "1.0.2"
 
 def bintrayName = "albertlii"
 def bintrayRepoName = "android-maven"
