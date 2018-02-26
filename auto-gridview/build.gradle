@@ -21,7 +21,7 @@ def bintrayLicences = ['Apache-2.0']
 
 android {
     compileSdkVersion comiple_sdk_version
-    buildToolsVersion build_tool_version
+//    buildToolsVersion build_tool_version
 
 
     defaultConfig {
