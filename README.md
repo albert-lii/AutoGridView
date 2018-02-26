@@ -34,7 +34,7 @@ AutoGridView主要使用ViewGroup实现，可以如QQ空间中的照片那种九
       <artifactId>auto-gridview</artifactId>
       <version>1.0.2</version>
       <type>pom</type>
-</dependency>
+   </dependency>
 ```
 
 ## 自定义属性
