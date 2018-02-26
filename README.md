@@ -21,10 +21,20 @@ AutoGridView主要使用ViewGroup实现，可以如QQ空间中的照片那种九
 > **博客详情链接：http://blog.csdn.net/liyi1009365545/article/details/78135582**
 
 ## 添加依赖
+- 使用Gradle
 ```java
     dependencies {
-         compile 'com.liyi:auto-gridview:1.0.1'
+         compile 'com.liyi:auto-gridview:1.0.2'
     }
+```
+- 使用Maven
+```java
+   <dependency>
+      <groupId>com.liyi</groupId>
+      <artifactId>auto-gridview</artifactId>
+      <version>1.0.2</version>
+      <type>pom</type>
+</dependency>
 ```
 
 ## 自定义属性
@@ -91,8 +101,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 
-[jcentersvg]: https://img.shields.io/badge/Jcenter-1.0.1-brightgreen.svg
-[releasesvg]: https://img.shields.io/badge/release-v1.0.1-0f80c1.svg
+[jcentersvg]: https://img.shields.io/badge/Jcenter-1.0.2-brightgreen.svg
+[releasesvg]: https://img.shields.io/badge/release-v1.0.2-0f80c1.svg
 [apisvg]: https://img.shields.io/badge/API-9+-brightgreen.svg
 [licensesvg]: https://img.shields.io/badge/License-Apache--2.0-0f80c1.svg
 [license]:http://www.apache.org/licenses/LICENSE-2.0
