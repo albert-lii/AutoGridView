@@ -91,7 +91,7 @@
             android:text="当前是九宫格模式"
             android:textSize="16sp" />
 
-        <com.liyi.view.AutoGridView
+        <com.liyi.grid.AutoGridView
             android:id="@+id/gridLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

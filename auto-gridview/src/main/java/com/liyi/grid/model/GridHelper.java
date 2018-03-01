@@ -1,8 +1,8 @@
-package com.liyi.view.model;
+package com.liyi.grid.model;
 
 
-import com.liyi.view.AutoGridView;
-import com.liyi.view.GridConfig;
+import com.liyi.grid.AutoGridView;
+import com.liyi.grid.GridConfig;
 
 public class GridHelper {
 

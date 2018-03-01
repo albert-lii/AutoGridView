@@ -8,8 +8,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.liyi.view.AutoGridView;
-import com.liyi.view.GridConfig;
+import com.liyi.grid.AutoGridView;
+import com.liyi.grid.GridConfig;
 
 import java.util.ArrayList;
 

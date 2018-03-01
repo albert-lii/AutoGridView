@@ -1,4 +1,4 @@
-package com.liyi.view;
+package com.liyi.grid;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

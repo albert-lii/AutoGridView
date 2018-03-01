@@ -1,4 +1,4 @@
-package com.liyi.view.model;
+package com.liyi.grid.model;
 
 
 public class GridResultBean {
