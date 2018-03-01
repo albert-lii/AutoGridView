@@ -24,13 +24,13 @@ AutoGridView主要使用ViewGroup实现，可以如QQ空间中的照片那种九
 - 使用Gradle
 ```java
     dependencies {
-         compile 'com.liyi:auto-gridview:1.0.3'
+         compile 'com.liyi.view:auto-gridview:1.0.3'
     }
 ```
 - 使用Maven
 ```java
    <dependency>
-      <groupId>com.liyi</groupId>
+      <groupId>com.liyi.view</groupId>
       <artifactId>auto-gridview</artifactId>
       <version>1.0.3</version>
       <type>pom</type>
