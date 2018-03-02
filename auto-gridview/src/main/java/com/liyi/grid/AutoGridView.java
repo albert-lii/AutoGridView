@@ -263,8 +263,8 @@ public class AutoGridView extends ViewGroup {
             child.measure(childWms, childHms);
 //            child.measure(MeasureSpec.makeMeasureSpec(width, MeasureSpec.AT_MOST),
 //                    MeasureSpec.makeMeasureSpec((int) mGRBean.getChildHeight(), MeasureSpec.EXACTLY));
-            int cw = child.getMeasuredWidth();
-            int ch = child.getMeasuredHeight();
+            int cw = child.getMeasuredWidth() == 0 ? width : child.getMeasuredWidth();
+            int ch = child.getMeasuredHeight() == 0 ? (int) (0.6 * width) : child.getMeasuredHeight();
             mGRBean.setChildWidth(cw);
             mGRBean.setChildHeight(ch);
             mGRBean.setParentWidth(cw);
