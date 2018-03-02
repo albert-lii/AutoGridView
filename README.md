@@ -24,15 +24,15 @@ AutoGridView主要使用ViewGroup实现，可以如QQ空间中的照片那种九
 - 使用Gradle
 ```java
     dependencies {
-         compile 'com.liyi:auto-gridview:1.0.2'
+         compile 'com.liyi.view:auto-gridview:1.0.3'
     }
 ```
 - 使用Maven
 ```java
    <dependency>
-      <groupId>com.liyi</groupId>
+      <groupId>com.liyi.view</groupId>
       <artifactId>auto-gridview</artifactId>
-      <version>1.0.2</version>
+      <version>1.0.3</version>
       <type>pom</type>
    </dependency>
 ```
@@ -53,7 +53,7 @@ AutoGridView主要使用ViewGroup实现，可以如QQ空间中的照片那种九
 ## 使用方法
 ### XML
 ```Java
-    <com.liyi.view.AutoGridView
+    <com.liyi.grid.AutoGridView
        android:id="@+id/gridLayout"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content" />
@@ -101,8 +101,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 
-[jcentersvg]: https://img.shields.io/badge/Jcenter-1.0.2-brightgreen.svg
-[releasesvg]: https://img.shields.io/badge/release-v1.0.2-0f80c1.svg
+[jcentersvg]: https://img.shields.io/badge/Jcenter-1.0.3-brightgreen.svg
+[releasesvg]: https://img.shields.io/badge/release-v1.0.3-0f80c1.svg
 [apisvg]: https://img.shields.io/badge/API-9+-brightgreen.svg
 [licensesvg]: https://img.shields.io/badge/License-Apache--2.0-0f80c1.svg
 [license]:http://www.apache.org/licenses/LICENSE-2.0
