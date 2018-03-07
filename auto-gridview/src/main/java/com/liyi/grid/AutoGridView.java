@@ -223,10 +223,14 @@ public class AutoGridView extends ViewGroup {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         if (mAdapter == null || getChildCount() == 0) {
+            setMeasuredDimension(widthSize, heightMode == MeasureSpec.EXACTLY ? heightSize : getPaddingTop() + getPaddingBottom());
             return;
         }
-        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
         int width = widthSize - getPaddingLeft() - getPaddingRight();
         int childCount = getChildCount();
         mGPBean = new GridParamBean();
@@ -283,7 +287,11 @@ public class AutoGridView extends ViewGroup {
 //        measureChildren(MeasureSpec.makeMeasureSpec((int) mGRBean.getChildWidth(), MeasureSpec.EXACTLY),
 //                MeasureSpec.makeMeasureSpec((int) mGRBean.getChildHeight(), MeasureSpec.EXACTLY));
         if (mGRBean != null) {
-            setMeasuredDimension((int) (mGRBean.getParentWidth() + getPaddingLeft() + getPaddingRight()), (int) (mGRBean.getParentHeight() + getPaddingTop() + getPaddingBottom()));
+            int widthMeasure = (int) (mGRBean.getParentWidth() + getPaddingLeft() + getPaddingRight());
+            int heightMeasure = (int) (mGRBean.getParentHeight() + getPaddingTop() + getPaddingBottom());
+            setMeasuredDimension(widthMode == MeasureSpec.EXACTLY ? widthSize : widthMeasure, heightMode == MeasureSpec.EXACTLY ? heightSize : heightMeasure);
+        } else {
+            setMeasuredDimension(widthSize, heightMode == MeasureSpec.EXACTLY ? heightSize : getPaddingTop() + getPaddingBottom());
         }
     }
 
