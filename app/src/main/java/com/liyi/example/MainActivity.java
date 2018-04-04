@@ -99,46 +99,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void update1() {
         mList.clear();
-        mList.add(R.mipmap.ic_launcher);
+        mList.add(R.drawable.landiao);
         mAdapter.setData(mList, gridLayout.getGridMode() == GridConfig.GRID_NINE ? true : false);
-        gridLayout.setGridRow(3);
-        gridLayout.setGridColumn(3);
         gridLayout.notifyChanged();
     }
 
     private void update2() {
         mList.clear();
-        mList.add(R.drawable.bg);
-        mList.add(R.drawable.fennen);
-        mList.add(R.drawable.heibai);
+        mList.add(R.drawable.landiao);
+        mList.add(R.drawable.landiao);
+        mList.add(R.drawable.landiao);
         mList.add(R.drawable.landiao);
         mAdapter.setData(mList, gridLayout.getGridMode() == GridConfig.GRID_NINE ? true : false);
-        gridLayout.setGridRow(3);
-        gridLayout.setGridColumn(3);
         gridLayout.notifyChanged();
     }
 
     private void update3() {
         mList.clear();
-        mList.add(R.drawable.bg);
-        mList.add(R.drawable.fennen);
-        mList.add(R.drawable.heibai);
         mList.add(R.drawable.landiao);
-        mList.add(R.drawable.langman);
+        mList.add(R.drawable.landiao);
+        mList.add(R.drawable.landiao);
+        mList.add(R.drawable.landiao);
+        mList.add(R.drawable.landiao);
         mAdapter.setData(mList, gridLayout.getGridMode() == GridConfig.GRID_NINE ? true : false);
-        gridLayout.setGridRow(3);
-        gridLayout.setGridColumn(3);
         gridLayout.notifyChanged();
     }
 
     private void update4() {
         mList.clear();
         for (int i = 0; i < 9; i++) {
-            mList.add(R.drawable.huaijiu);
+            mList.add(R.drawable.landiao);
         }
         mAdapter.setData(mList, gridLayout.getGridMode() == GridConfig.GRID_NINE ? true : false);
-        gridLayout.setGridRow(4);
-        gridLayout.setGridColumn(4);
         gridLayout.notifyChanged();
     }
 
@@ -149,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void addPic() {
-        mList.add(R.drawable.langman);
+        mList.add(R.drawable.landiao);
         mAdapter.setData(mList, false);
         if (gridLayout.getGridMode() == GridConfig.GRID_NINE) {
             gridLayout.setGridMode(GridConfig.GRID_NORMAL);

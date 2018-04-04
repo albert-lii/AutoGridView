@@ -97,6 +97,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/colorAccent"
-            app:grid_onehper="0.53" />
+            app:grid_column="3"
+            app:grid_onehper="0.53"
+            app:grid_row="3" />
     </LinearLayout>
 </ScrollView>
