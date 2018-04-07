@@ -2,9 +2,12 @@ package com.liyi.grid.model;
 
 
 import com.liyi.grid.AutoGridView;
-import com.liyi.grid.GridConfig;
+import com.liyi.grid.AutoGridConfig;
 
-public class GridHelper {
+/**
+ * 网格数据计算辅助类
+ */
+public class AutoGridHelper {
 
     /**
      * 计算 item 和 parent 的宽高
@@ -12,7 +15,7 @@ public class GridHelper {
      * @param bean
      * @return
      */
-    public GridResultBean calculateSize(GridParamBean bean) {
+    public AutoGridResultBean calculateSize(AutoGridParamBean bean) {
         if (bean != null) {
             float childWidth, childHeight;
             float parentWidth, parentHeight;
@@ -24,7 +27,7 @@ public class GridHelper {
             childWidth = (maxWidth - totalHspace) / column;
             childHeight = bean.getGridHeight() != AutoGridView.DEF_GRID_HEIGHT ? bean.getGridHeight() : childWidth;
             // 判断当前网格是九宫格模式还是普通模式
-            if (bean.getGridType() == GridConfig.GRID_NINE) {
+            if (bean.getGridType() == AutoGridConfig.GRID_NINE) {
                 // 只有一个 itemView 时
                 if (count == 1) {
                     float wp = bean.getGridOneWper();
@@ -46,7 +49,7 @@ public class GridHelper {
                     }
                     parentWidth = childWidth;
                     parentHeight = childHeight;
-                    return new GridResultBean(childRows, childColumns, childWidth, childHeight, parentWidth, parentHeight);
+                    return new AutoGridResultBean(childRows, childColumns, childWidth, childHeight, parentWidth, parentHeight);
                 } else {
                     // 如果 itemView 的个数大于可以显示的最大个数
                     if (bean.getGridRow() * bean.getGridColumn() < count) {
@@ -87,7 +90,7 @@ public class GridHelper {
             if (count == 1) {
                 parentWidth = childWidth;
             }
-            return new GridResultBean(childRows, childColumns, childWidth, childHeight, parentWidth, parentHeight);
+            return new AutoGridResultBean(childRows, childColumns, childWidth, childHeight, parentWidth, parentHeight);
         }
         return null;
     }
@@ -99,7 +102,7 @@ public class GridHelper {
      * @param index
      * @return
      */
-    public int[] findPosition(GridResultBean bean, int index) {
+    public int[] findPosition(AutoGridResultBean bean, int index) {
         if (bean == null) {
             return null;
         }

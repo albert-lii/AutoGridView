@@ -1,7 +1,7 @@
 package com.liyi.grid.model;
 
 
-public class GridParamBean {
+public class AutoGridParamBean {
     private int gridType;
     private int gridRow;
     private int gridColumn;
@@ -14,11 +14,11 @@ public class GridParamBean {
     private int itemCount;
     private int maxWidth;
 
-    public GridParamBean() {
+    public AutoGridParamBean() {
     }
 
-    public GridParamBean(int gridType, int gridRow, int gridColumn, float gridWidth, float gridHeight,
-                         float gridHspace, float gridVspqce, float gridOneWper, float gridOneHper, int itemCount, int maxWidth) {
+    public AutoGridParamBean(int gridType, int gridRow, int gridColumn, float gridWidth, float gridHeight,
+                             float gridHspace, float gridVspqce, float gridOneWper, float gridOneHper, int itemCount, int maxWidth) {
         this.gridType = gridType;
         this.gridRow = gridRow;
         this.gridColumn = gridColumn;
@@ -36,7 +36,7 @@ public class GridParamBean {
         return gridType;
     }
 
-    public GridParamBean setGridType(int gridType) {
+    public AutoGridParamBean setGridType(int gridType) {
         this.gridType = gridType;
         return this;
     }
@@ -45,7 +45,7 @@ public class GridParamBean {
         return gridRow;
     }
 
-    public GridParamBean setGridRow(int gridRow) {
+    public AutoGridParamBean setGridRow(int gridRow) {
         this.gridRow = gridRow;
         return this;
     }
@@ -54,7 +54,7 @@ public class GridParamBean {
         return gridColumn;
     }
 
-    public GridParamBean setGridColumn(int gridColumn) {
+    public AutoGridParamBean setGridColumn(int gridColumn) {
         this.gridColumn = gridColumn;
         return this;
     }
@@ -63,7 +63,7 @@ public class GridParamBean {
         return gridWidth;
     }
 
-    public GridParamBean setGridWidth(float gridWidth) {
+    public AutoGridParamBean setGridWidth(float gridWidth) {
         this.gridWidth = gridWidth;
         return this;
     }
@@ -72,7 +72,7 @@ public class GridParamBean {
         return gridHeight;
     }
 
-    public GridParamBean setGridHeight(float gridHeight) {
+    public AutoGridParamBean setGridHeight(float gridHeight) {
         this.gridHeight = gridHeight;
         return this;
     }
@@ -81,7 +81,7 @@ public class GridParamBean {
         return gridHspace;
     }
 
-    public GridParamBean setGridHspace(float gridHspace) {
+    public AutoGridParamBean setGridHspace(float gridHspace) {
         this.gridHspace = gridHspace;
         return this;
     }
@@ -90,7 +90,7 @@ public class GridParamBean {
         return gridVspqce;
     }
 
-    public GridParamBean setGridVspqce(float gridVspqce) {
+    public AutoGridParamBean setGridVspqce(float gridVspqce) {
         this.gridVspqce = gridVspqce;
         return this;
     }
@@ -99,7 +99,7 @@ public class GridParamBean {
         return gridOneWper;
     }
 
-    public GridParamBean setGridOneWper(float gridOneWper) {
+    public AutoGridParamBean setGridOneWper(float gridOneWper) {
         this.gridOneWper = gridOneWper;
         return this;
     }
@@ -108,7 +108,7 @@ public class GridParamBean {
         return gridOneHper;
     }
 
-    public GridParamBean setGridOneHper(float gridOneHper) {
+    public AutoGridParamBean setGridOneHper(float gridOneHper) {
         this.gridOneHper = gridOneHper;
         return this;
     }
@@ -117,7 +117,7 @@ public class GridParamBean {
         return itemCount;
     }
 
-    public GridParamBean setItemCount(int itemCount) {
+    public AutoGridParamBean setItemCount(int itemCount) {
         this.itemCount = itemCount;
         return this;
     }
@@ -126,7 +126,7 @@ public class GridParamBean {
         return maxWidth;
     }
 
-    public GridParamBean setMaxWidth(int maxWidth) {
+    public AutoGridParamBean setMaxWidth(int maxWidth) {
         this.maxWidth = maxWidth;
         return this;
     }

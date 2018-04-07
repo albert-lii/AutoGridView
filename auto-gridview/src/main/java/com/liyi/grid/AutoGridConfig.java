@@ -1,7 +1,7 @@
 package com.liyi.grid;
 
 
-public class GridConfig {
+public class AutoGridConfig {
     // 无效的值
     public static final int INVALID_VAL = -1;
 

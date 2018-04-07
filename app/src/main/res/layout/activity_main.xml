@@ -12,88 +12,120 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:padding="10dp">
 
             <Button
                 android:id="@+id/btn_nine"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:text="九宫格模式" />
+                android:background="#000000"
+                android:text="九宫格模式"
+                android:textColor="#ffffff" />
 
             <Button
                 android:id="@+id/btn_normal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="普通模式" />
+                android:background="#000000"
+                android:text="普通模式"
+                android:textColor="#ffffff" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btn_data1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="数据1" />
-
-            <Button
-                android:id="@+id/btn_data2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="数据2" />
-
-            <Button
-                android:id="@+id/btn_data3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="数据3" />
-
-            <Button
-                android:id="@+id/btn_data4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="数据4" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btn_clear_pic"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="清空图片" />
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
 
             <Button
                 android:id="@+id/btn_add_pic"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
                 android:layout_weight="1"
-                android:text="普通模式下添加图片" />
+                android:background="#000000"
+                android:text="添加图片"
+                android:textColor="#ffffff" />
+
+            <Button
+                android:id="@+id/btn_clear_pic"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#000000"
+                android:text="清空图片"
+                android:textColor="#ffffff" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <Button
+                android:id="@+id/btn_update_data1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="#000000"
+                android:text="数据1"
+                android:textColor="#ffffff" />
+
+            <Button
+                android:id="@+id/btn_update_data2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="#000000"
+                android:text="数据2"
+                android:textColor="#ffffff" />
+
+            <Button
+                android:id="@+id/btn_update_data3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="#000000"
+                android:text="数据3"
+                android:textColor="#ffffff" />
+
+            <Button
+                android:id="@+id/btn_update_data4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#000000"
+                android:text="数据4"
+                android:textColor="#ffffff" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/tv_mode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
             android:gravity="center"
+            android:includeFontPadding="false"
             android:text="当前是九宫格模式"
-            android:textSize="16sp" />
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <com.liyi.grid.AutoGridView
-            android:id="@+id/gridLayout"
+            android:id="@+id/autoGridVi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/colorAccent"

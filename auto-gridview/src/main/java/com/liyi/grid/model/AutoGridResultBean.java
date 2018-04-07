@@ -1,7 +1,7 @@
 package com.liyi.grid.model;
 
 
-public class GridResultBean {
+public class AutoGridResultBean {
     private int childRows;
     private int childColumns;
     private float childWidth;
@@ -9,11 +9,11 @@ public class GridResultBean {
     private float parentWidth;
     private float parentHeight;
 
-    public GridResultBean() {
+    public AutoGridResultBean() {
         super();
     }
 
-    public GridResultBean(int childRow, int childColumn, float childWidth, float childHeight, float parentWidth, float parentHeight) {
+    public AutoGridResultBean(int childRow, int childColumn, float childWidth, float childHeight, float parentWidth, float parentHeight) {
         this.childRows = childRow;
         this.childColumns = childColumn;
         this.childWidth = childWidth;
