@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void loadData() {
         mList = new ArrayList<>();
-        mList.add(R.drawable.landiao);
+        mList.add(R.drawable.img_demo_pic);
         mAdapter = new SimpleAutoGridAdapter();
         mAdapter.setMode(AutoGridConfig.GRID_NINE);
         mAdapter.setSource(mList);
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.btn_nine:
                 mList.clear();
-                mList.add(R.drawable.landiao);
+                mList.add(R.drawable.img_demo_pic);
                 mAdapter.setSource(mList);
                 mAdapter.setMode(AutoGridConfig.GRID_NINE);
                 autoGridVi.setGridMode(AutoGridConfig.GRID_NINE);
@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_normal:
                 mList.clear();
-                mList.add(R.drawable.landiao);
+                mList.add(R.drawable.img_demo_pic);
                 mAdapter.setSource(mList);
                 mAdapter.setMode(AutoGridConfig.GRID_NORMAL);
                 autoGridVi.setGridMode(AutoGridConfig.GRID_NORMAL);
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void update1() {
         mList.clear();
-        mList.add(R.drawable.landiao);
+        mList.add(R.drawable.img_demo_pic);
         mAdapter.setSource(mList);
         mAdapter.notifyDataSetChanged();
     }
@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void update2() {
         mList.clear();
         for (int i = 0; i < 4; i++) {
-            mList.add(R.drawable.landiao);
+            mList.add(R.drawable.img_demo_pic);
         }
         mAdapter.setSource(mList);
         mAdapter.notifyDataSetChanged();
@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void update3() {
         mList.clear();
         for (int i = 0; i < 5; i++) {
-            mList.add(R.drawable.landiao);
+            mList.add(R.drawable.img_demo_pic);
         }
         mAdapter.setSource(mList);
         mAdapter.notifyDataSetChanged();
@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void update4() {
         mList.clear();
         for (int i = 0; i < 9; i++) {
-            mList.add(R.drawable.landiao);
+            mList.add(R.drawable.img_demo_pic);
         }
         mAdapter.setSource(mList);
         mAdapter.notifyDataSetChanged();
@@ -161,7 +161,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void addPic() {
-        mList.add(R.drawable.landiao);
+        mList.add(R.drawable.img_demo_pic);
         mAdapter.setSource(mList);
         mAdapter.notifyDataSetChanged();
     }
