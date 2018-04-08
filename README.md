@@ -110,4 +110,4 @@ limitations under the License.
 
 [SUtils]:https://github.com/albert-lii/SUtils
 [FlowView]:https://github.com/albert-lii/FlowView
-[demogif]:https://github.com/albert-lii/AutoGridView/blob/master/screenshot/auto_gridview.gif
+[demogif]:https://github.com/albert-lii/AutoGridView/blob/master/screenshot/demo.gif
