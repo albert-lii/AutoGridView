@@ -1,6 +1,6 @@
 # AutoGridView  
 
-![jcentersvg] ![releasesvg] ![apisvg] [![license][licensesvg]][license]   
+![releasesvg] ![apisvg] [![license][licensesvg]][license]   
 
 ## 关于
 AutoGridView使用ViewGroup实现，可以如QQ空间与微信朋友圈中的照片那种九宫格方式排布（注：此处的九宫格排列不仅仅是可以按照QQ控件那种九宫格排布，只要宫格的个数达到可以开平方的要求（1x1,2x2,3x3,4x4...），都会按照正方形排列），同时AutoGridView也可以实现普通的宫格排布方式。此外AutoGridView还可以控制显示的行数和列数，这个在需要实现 **`点击展开更多`** 和 **`点击收起`** 中还是非常有用的。AutoGridView可以设定宫格的高，也可以采用默认的高，默认的高与宫格的宽相等。
@@ -15,9 +15,6 @@ AutoGridView还采用了Adapter模式，使用方式就如同ListView和Adapter�
 先来看看效果把！  
 
 ![演示][demogif]
-
-录制的gif不是很流畅，小伙伴们可以在自己的机器上运行一下试试效果！  
-> **博客详情链接：http://blog.csdn.net/liyi1009365545/article/details/78135582**
 
 ## 添加依赖
 - 使用Gradle
@@ -115,10 +112,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 
-[jcentersvg]: https://img.shields.io/badge/Jcenter-1.0.3-brightgreen.svg
-[releasesvg]: https://img.shields.io/badge/release-v1.0.3-0f80c1.svg
+[releasesvg]: https://img.shields.io/badge/release-v1.0.3-brightgreen.svg
 [apisvg]: https://img.shields.io/badge/API-9+-brightgreen.svg
-[licensesvg]: https://img.shields.io/badge/License-Apache--2.0-0f80c1.svg
+[licensesvg]: https://img.shields.io/badge/License-Apache--2.0-brightgreen.svg
 [license]:http://www.apache.org/licenses/LICENSE-2.0
 [statussvg]:https://img.shields.io/librariesio/github/phoenixframework/phoenix.svg  
 
