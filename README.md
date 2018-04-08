@@ -62,7 +62,7 @@ AutoGridView还采用了Adapter模式，使用方式就如同ListView和Adapter�
 2、设置适配器：autoGridView.setAdapter(Adapter);
 
 ```java
-例：
+例：（注：此处使用的是默认提供的适配器，自定义适配器使用方法同ListView的BaseAdapter）
 // 使用默认的简单适配器（也可自定义适配器，继承BaseAutoGridAdapter）
 mAdapter = new SimpleAutoGridAdapter();
 // 简单适配器需要设置当前网格图的模式
