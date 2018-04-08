@@ -47,7 +47,7 @@ AutoGridView还采用了Adapter模式，使用方式就如同ListView和Adapter�
 - grid_hspace（网格间的横向间距，默认为 10px）
 - grid_vspace（网格间的纵向间距，默认为 10px）
 - grid_onewper（九宫格模式下，单个 item 时，item 的宽占 parent 的可用总宽的比例（范围0-1），默认为自适应）
-- grid_onehper（九宫格模式下，单个 item 时，item 的高与 viewGroup 的可用总宽的比（范围0-1），默认为自适应
+- grid_onehper（九宫格模式下，单个 item 时，item 的高与 viewGroup 的可用总宽的比（范围0-1），默认为自适应）
 
 ## 使用方法
 ### XML
