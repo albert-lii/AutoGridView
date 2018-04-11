@@ -112,7 +112,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 
-[releasesvg]: https://img.shields.io/badge/Release-V1.0.7-brightgreen.svg
+[releasesvg]:https://img.shields.io/badge/Release-1.0.7-brightgreen.svg
 [apisvg]: https://img.shields.io/badge/API-9+-brightgreen.svg
 [licensesvg]: https://img.shields.io/badge/License-Apache--2.0-brightgreen.svg
 [license]:http://www.apache.org/licenses/LICENSE-2.0
