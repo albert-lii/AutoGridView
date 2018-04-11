@@ -1,6 +1,6 @@
 # AutoGridView  
 
-![releasesvg] ![apisvg] [![license][licensesvg]][license]   
+![releasesvg] ![apisvg] [![license][licensesvg]][license]   
 
 ## 关于
 AutoGridView使用ViewGroup实现，可以如QQ空间与微信朋友圈中的照片那种九宫格方式排布（注：此处的九宫格排列不仅仅是可以按照QQ控件那种九宫格排布，只要宫格的个数达到可以开平方的要求（1x1,2x2,3x3,4x4...），都会按照正方形排列），同时AutoGridView也可以实现普通的宫格排布方式。此外AutoGridView还可以控制显示的行数和列数，这个在需要实现 **`点击展开更多`** 和 **`点击收起`** 中还是非常有用的。AutoGridView可以设定宫格的高，也可以采用默认的高，默认的高与宫格的宽相等。
@@ -112,7 +112,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 
-[releasesvg]: https://img.shields.io/badge/Release-1.0.7-brightgreen.svg
+[releasesvg]: https://img.shields.io/badge/Release-V1.0.7-brightgreen.svg
 [apisvg]: https://img.shields.io/badge/API-9+-brightgreen.svg
 [licensesvg]: https://img.shields.io/badge/License-Apache--2.0-brightgreen.svg
 [license]:http://www.apache.org/licenses/LICENSE-2.0
