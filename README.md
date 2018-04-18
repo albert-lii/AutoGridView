@@ -113,7 +113,7 @@ limitations under the License.
 
 
 [releasesvg]:https://img.shields.io/badge/version-1.0.7-brightgreen.svg
-[apisvg]: https://img.shields.io/badge/api-9+-brightgreen.svg
+[apisvg]: https://img.shields.io/badge/sdk-9+-brightgreen.svg
 [licensesvg]: https://img.shields.io/badge/license-Apache--2.0-blue.svg
 [license]:http://www.apache.org/licenses/LICENSE-2.0
 [statussvg]:https://img.shields.io/librariesio/github/phoenixframework/phoenix.svg  
