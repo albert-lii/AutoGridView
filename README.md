@@ -8,8 +8,7 @@ AutoGridView使用ViewGroup实现，可以如QQ空间与微信朋友圈中的照
 AutoGridView还采用了Adapter模式，使用方式就如同ListView和Adapter搭配一样简单，可以 **`自定义item`** ,更加灵活！对于item，也使用了简单的缓存复用，减少性能消耗...
   
 ## 推荐 
-- [SUtils][SUtils] 轻量的常用的工具类库
-- [FlowView][FlowView] 功能齐全的流布局
+- [ImageViewer][ImageViewer] 图片浏览器，仿朋友圈图片查看效果
 
 ## 演示
 先来看看效果把！  
@@ -19,6 +18,15 @@ AutoGridView还采用了Adapter模式，使用方式就如同ListView和Adapter�
 ## 添加依赖
 - 使用Gradle
 ```java
+   // 注：如果添加依赖成功，则此句不必添加，此句作用仅为当项目在被审核时，紧急需要使用时添加
+   allprojects {
+       repositories {
+           ...
+           // 如果添加依赖时，报找不到项目时（项目正在审核），可以添加此句maven地址，如果找到项目，可不必添加
+           maven { url "https://dl.bintray.com/albertlii/android-maven/" }
+       }
+    }
+    
     dependencies {
          compile 'com.liyi.view:auto-gridview:1.0.8'
     }
@@ -120,6 +128,5 @@ limitations under the License.
 
 [SimpleAutoGridAdapter]:https://github.com/albert-lii/AutoGridView/blob/master/auto-gridview/src/main/java/com/liyi/grid/adapter/SimpleAutoGridAdapter.java
 
-[SUtils]:https://github.com/albert-lii/SUtils
-[FlowView]:https://github.com/albert-lii/FlowView
+[ImageViewer]:https://github.com/albert-lii/ImageViewer
 [demogif]:https://github.com/albert-lii/AutoGridView/blob/master/screenshot/demo.gif
