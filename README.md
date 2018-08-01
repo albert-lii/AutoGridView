@@ -55,50 +55,31 @@ AutoGridView还采用了Adapter模式，使用方式就如同ListView和Adapter�
 - agv_nines_heightper（九宫格模式下，单个 item 时，item 的高与 parent 的可用总宽的比（范围0-1），默认为自适应）
 
 ## 使用方法
-### XML
+### XML 中添加 AutoGridView
 ```Java
    <com.liyi.grid.AutoGridView
        android:id="@+id/autoGridVi"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"/>
 ```
-### 代码实现
-1、适配器的实现  
-- 项目中提供默认的适配器，实现简单的图片展示功能[`SimpleAutoGridAdapter`][SimpleAutoGridAdapter]  
-- 自定义适配器，继承`BaseAutoGridAdapter` 
-   
-2、设置适配器：autoGridView.setAdapter(Adapter);
+### 代码中使用 AutoGridView
+#### 1、三种适配器
+- [`SimpleAutoGridAdapter`][SimpleAutoGridAdapter]：简用适配器，可以直接使用，用于常规需求[demo中使用示例][SimpleAutoGridActivity]
+- [`QuickAutoGridAdapter`][QuickAutoGridAdapter]：快捷适配器，继承自`BaseAutoGridAdapter`，方便快速开发[demo中使用示例][QuickAutoGridActivity]
+- [`BaseAutoGridAdapter`][BaseAutoGridAdapter]：基础适配器，使用方法同`ListView与BaseAdapter` [demo中使用示例][BaseAutoGridActivity]
 
+#### 2、简单使用
 ```java
-例：（注：此处使用的是默认提供的适配器，自定义适配器使用方法同ListView的BaseAdapter）
-// 使用默认的简单适配器（也可自定义适配器，继承BaseAutoGridAdapter）
-mAdapter = new SimpleAutoGridAdapter();
-// 简单适配器需要设置当前网格图的模式
-mAdapter.setMode(AutoGridConfig.GRID_NINE);
-// 设置数据源
-mAdapter.setSource(mList);
-// 设置图片加载方式
-mAdapter.setImageLoader(new SimpleAutoGridAdapter.ImageLoader() {
-       @Override
-       public void onLoadImage(int position, Object source, ImageView view, int viewType) {
-           view.setImageResource((Integer) source);
-       }
-   });
-// 设置适配器
-autoGridView.setAdapter(mAdapter);  
 
-// 设置 item 的点击事件
-autoGridView.setOnItemClickListener(new AutoGridView.OnItemClickListener() {
-           @Override
-           public void onItemClick(int position, View view) {
-               Toast.makeText(GridActivity.this, "我是" + position + "号", 
-               Toast.LENGTH_SHORT).show();
-           }
-       });
-
-// 数据更新
-mAdapter.setSource(mList);
-mAdapter.notifyDataSetChanged();
+例：（注：此处使用的 SimpleAutoGridAdapter）
+mAdapter = new SimpleAutoGridAdapter<Integer, BaseAutoGridHolder>(mImageList);
+mAdapter.setImageLoader(new SimpleAutoGridAdapter.ImageLoader<Integer>() {
+    @Override
+    public void onLoadImage(int position, Integer item, ImageView imageView) {
+        imageView.setImageResource(item);
+    }
+});
+autoGridVi.setAdapter(mAdapter);
 ```
 
 ## 赞赏
@@ -127,6 +108,13 @@ limitations under the License.
 [statussvg]:https://img.shields.io/librariesio/github/phoenixframework/phoenix.svg  
 
 [SimpleAutoGridAdapter]:https://github.com/albert-lii/AutoGridView/blob/master/auto-gridview/src/main/java/com/liyi/grid/adapter/SimpleAutoGridAdapter.java
+[QuickAutoGridAdapter]:https://github.com/albert-lii/AutoGridView/blob/master/auto-gridview/src/main/java/com/liyi/grid/adapter/QuickAutoGridAdapter.java
+[BaseAutoGridAdapter]:https://github.com/albert-lii/AutoGridView/blob/master/auto-gridview/src/main/java/com/liyi/grid/adapter/BaseAutoGridAdapter.java
+
+[SimpleAutoGridActivity]:https://github.com/albert-lii/AutoGridView/blob/master/app/src/main/java/com/liyi/example/SimpleAutoGridActivity.java
+[QuickAutoGridActivity]:https://github.com/albert-lii/AutoGridView/blob/master/app/src/main/java/com/liyi/example/QuickAutoGridActivity.java
+[BaseAutoGridActivity]:https://github.com/albert-lii/AutoGridView/blob/master/app/src/main/java/com/liyi/example/BaseAutoGridActivity.java
+
 
 [ImageViewer]:https://github.com/albert-lii/ImageViewer
 [demogif]:https://github.com/albert-lii/AutoGridView/blob/master/screenshot/demo.gif
