@@ -8,7 +8,7 @@ AutoGridView使用ViewGroup实现，可以如QQ空间与微信朋友圈中的照
 AutoGridView还采用了Adapter模式，使用方式就如同ListView和Adapter搭配一样简单，可以 **`自定义item`** ,更加灵活！对于item，也使用了简单的缓存复用，减少性能消耗...
   
 ## 推荐 
-- [ImageViewer][ImageViewer] 图片浏览器，仿朋友圈图片查看效果
+- [ImageViewer][ImageViewer] 图片预览器，仿朋友圈和今日头条图片预览效果
 
 ## 演示
 先来看看效果把！  
@@ -28,7 +28,7 @@ AutoGridView还采用了Adapter模式，使用方式就如同ListView和Adapter�
     }
     
     dependencies {
-         compile 'com.liyi.view:auto-gridview:1.0.8'
+         compile 'com.liyi.view:auto-gridview:1.1.0'
     }
 ```
 - 使用Maven
@@ -36,23 +36,23 @@ AutoGridView还采用了Adapter模式，使用方式就如同ListView和Adapter�
    <dependency>
       <groupId>com.liyi.view</groupId>
       <artifactId>auto-gridview</artifactId>
-      <version>1.0.8</version>
+      <version>1.1.0</version>
       <type>pom</type>
    </dependency>
 ```
 
 ## 自定义属性
-- grid_mode（网格图的模式，默认为 nine）  
+- agv_mode（网格图的模式，默认为 nine）  
   - nine（类似QQ空间、微信朋友圈的九宫格类型网格图）
   - normal（依次显示网格的普通类型网格图）  
  
-- grid_row（网格的行数，默认为 3）
-- grid_column（网格的列数，默认 为3）
-- grid_height（网格的高度，默认与宫格图的宽相等）
-- grid_hspace（网格间的横向间距，默认为 10px）
-- grid_vspace（网格间的纵向间距，默认为 10px）
-- grid_onewper（九宫格模式下，单个 item 时，item 的宽占 parent 的可用总宽的比例（范围0-1），默认为自适应）
-- grid_onehper（九宫格模式下，单个 item 时，item 的高与 viewGroup 的可用总宽的比（范围0-1），默认为自适应）
+- agv_row（item 的行数，默认为 3）
+- agv_column（item 的列数，默认 为3）
+- agv_item_height（item 的高度，默认与宫格图的宽相等）
+- agv_horizontal_space（网格间的横向间距，默认为 10px）
+- agv_vertical_space（网格间的纵向间距，默认为 10px）
+- agv_nines_widthper（九宫格模式下，单个 item 时，item 的宽占 parent 的可用总宽的比例（范围0-1），默认为自适应）
+- agv_nines_heightper（九宫格模式下，单个 item 时，item 的高与 parent 的可用总宽的比（范围0-1），默认为自适应）
 
 ## 使用方法
 ### XML
@@ -120,7 +120,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 
-[releasesvg]:https://img.shields.io/badge/version-1.0.8-brightgreen.svg
+[releasesvg]:https://img.shields.io/badge/version-1.1.0-brightgreen.svg
 [apisvg]: https://img.shields.io/badge/sdk-9+-brightgreen.svg
 [licensesvg]: https://img.shields.io/badge/license-Apache--2.0-blue.svg
 [license]:http://www.apache.org/licenses/LICENSE-2.0
