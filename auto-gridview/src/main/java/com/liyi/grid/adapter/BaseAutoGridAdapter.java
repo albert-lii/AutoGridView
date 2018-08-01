@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * AutoGridView 的适配器
+ * AutoGridView 的适配器基类
  */
 public abstract class BaseAutoGridAdapter {
     // 被观察者，用来注册观察者

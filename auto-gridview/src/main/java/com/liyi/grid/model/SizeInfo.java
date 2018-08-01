@@ -1,41 +1,41 @@
 package com.liyi.grid.model;
 
 
-public class AutoGridResultBean {
-    private int childRows;
-    private int childColumns;
+public class SizeInfo {
+    private int childRow;
+    private int childColumn;
     private float childWidth;
     private float childHeight;
     private float parentWidth;
     private float parentHeight;
 
-    public AutoGridResultBean() {
+    public SizeInfo() {
         super();
     }
 
-    public AutoGridResultBean(int childRow, int childColumn, float childWidth, float childHeight, float parentWidth, float parentHeight) {
-        this.childRows = childRow;
-        this.childColumns = childColumn;
+    public SizeInfo(int childRow, int childColumn, float childWidth, float childHeight, float parentWidth, float parentHeight) {
+        this.childRow = childRow;
+        this.childColumn = childColumn;
         this.childWidth = childWidth;
         this.childHeight = childHeight;
         this.parentWidth = parentWidth;
         this.parentHeight = parentHeight;
     }
 
-    public int getChildRows() {
-        return childRows;
+    public int getChildRow() {
+        return childRow;
     }
 
-    public void setChildRows(int childRows) {
-        this.childRows = childRows;
+    public void setChildRow(int childRow) {
+        this.childRow = childRow;
     }
 
-    public int getChildColumns() {
-        return childColumns;
+    public int getChildColumn() {
+        return childColumn;
     }
 
-    public void setChildColumns(int childColumns) {
-        this.childColumns = childColumns;
+    public void setChildColumn(int childColumn) {
+        this.childColumn = childColumn;
     }
 
     public float getChildWidth() {

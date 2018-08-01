@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--网格控件-->
+    <declare-styleable name="AutoGridView">
+        <!--网格图的类型-->
+        <attr name="agv_mode">
+            <!--类似QQ空间、微信朋友圈的九宫格类型网格图-->
+            <enum name="nine" value="0" />
+            <!--依次显示网格的普通类型网格图-->
+            <enum name="normal" value="1" />
+        </attr>
+        <!--网格的行数-->
+        <attr name="agv_row" format="integer" />
+        <!--网格的列数-->
+        <attr name="agv_column" format="integer" />
+        <!--item 的高度-->
+        <attr name="agv_item_height" format="dimension" />
+        <!--item 之间的横向间距-->
+        <attr name="agv_horizontal_space" format="dimension" />
+        <!--item 之间的纵向间距-->
+        <attr name="agv_vertical_space" format="dimension" />
+        <!--九宫格模式下，单个 item 时，item 的宽与 parent 的可用总宽的比-->
+        <attr name="agv_nines_widthper" format="float" />
+        <!--九宫格模式下，单个 item 时，item 的高与 parent 的可用总宽的比-->
+        <attr name="agv_nines_heightper" format="float" />
+    </declare-styleable>
+</resources>
