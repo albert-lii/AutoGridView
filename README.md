@@ -57,10 +57,10 @@ AutoGridView还采用了Adapter模式，使用方式就如同ListView和Adapter�
 ## 使用方法
 ### XML 中添加 AutoGridView
 ```Java
-   <com.liyi.grid.AutoGridView
-       android:id="@+id/autoGridVi"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"/>
+<com.liyi.grid.AutoGridView
+    android:id="@+id/autoGridVi"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"/>
 ```
 ### 代码中使用 AutoGridView
 #### 1、三种适配器
