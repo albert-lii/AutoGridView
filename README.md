@@ -28,7 +28,7 @@ AutoGridView还采用了Adapter模式，使用方式就如同ListView和Adapter�
     }
     
     dependencies {
-         compile 'com.liyi.view:auto-gridview:1.1.0'
+         compile 'com.liyi.view:auto-gridview:1.1.1'
     }
 ```
 - 使用Maven
@@ -36,7 +36,7 @@ AutoGridView还采用了Adapter模式，使用方式就如同ListView和Adapter�
    <dependency>
       <groupId>com.liyi.view</groupId>
       <artifactId>auto-gridview</artifactId>
-      <version>1.1.0</version>
+      <version>1.1.1</version>
       <type>pom</type>
    </dependency>
 ```
@@ -101,7 +101,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 
-[releasesvg]:https://img.shields.io/badge/version-1.1.0-brightgreen.svg
+[releasesvg]:https://img.shields.io/badge/version-1.1.1-brightgreen.svg
 [apisvg]: https://img.shields.io/badge/sdk-9+-brightgreen.svg
 [licensesvg]: https://img.shields.io/badge/license-Apache--2.0-blue.svg
 [license]:http://www.apache.org/licenses/LICENSE-2.0
