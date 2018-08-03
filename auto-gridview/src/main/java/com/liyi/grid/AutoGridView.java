@@ -143,6 +143,80 @@ public class AutoGridView extends ViewGroup {
     }
 
     /**
+     * 通知刷新
+     */
+    private void notifyChanged() {
+        if (mAdapter != null) {
+            removeAllViews();
+            int totalCount = mAdapter.getCount();
+            if (totalCount == 0) {
+                mCacheBin.clear();
+                return;
+            }
+            for (int i = 0; i < totalCount; i++) {
+                String key = mMode + "_" + mAdapter.getItemViewType(i);
+                // 从缓存器中取出 key 类型的 view 列表
+                List<SoftReference<View>> views = mCacheBin.get(key);
+                /** 此处做简单的缓存复用处理 */
+                if (views != null && views.size() > 0) {
+                    boolean isAdd = false;
+                    for (SoftReference<View> softReference : views) {
+                        if (softReference != null && softReference.get() != null) {
+                            View itemView = softReference.get();
+                            // 如果列表中的 item 还没有父容器，则复用该 item
+                            if (itemView.getParent() == null) {
+                                addItemClickListener(itemView, i);
+                                addItemLongClickListener(itemView, i);
+                                addView(mAdapter.getView(i, itemView, this), new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+                                isAdd = true;
+                                break;
+                            }
+                        }
+                    }
+                    // 如果从 views 中未找到匹配的 item ，则新建 item
+                    if (!isAdd) {
+                        View itemView = mAdapter.getView(i, null, this);
+                        // 将新建的 item 存入列表中
+                        views.add(new SoftReference<View>(itemView));
+                        mCacheBin.put(key, views);
+                        addItemClickListener(itemView, i);
+                        addItemLongClickListener(itemView, i);
+                        addView(itemView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+                    }
+                }
+                // 如果没有 key 类型的 view 存在，则新建 item
+                else {
+                    View itemView = mAdapter.getView(i, null, this);
+                    views = (views != null ? views : new ArrayList<SoftReference<View>>());
+                    views.add(new SoftReference<View>(itemView));
+                    mCacheBin.put(key, views);
+                    addItemClickListener(itemView, i);
+                    addItemLongClickListener(itemView, i);
+                    addView(itemView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+                }
+            }
+            /** 将多余的没有用到的 item 移除 */
+            for (String key : mCacheBin.keySet()) {
+                List<SoftReference<View>> views = mCacheBin.get(key);
+                if (views != null && views.size() > 0) {
+                    List<SoftReference<View>> tempViews = new ArrayList<SoftReference<View>>();
+                    for (SoftReference<View> softReference : views) {
+                        if (softReference != null && softReference.get() != null) {
+                            if (softReference.get().getParent() == null) {
+                                tempViews.add(softReference);
+                            }
+                        }
+                    }
+                    views.remove(tempViews);
+                    mCacheBin.put(key, views);
+                }
+            }
+        }
+        requestLayout();
+        invalidate();
+    }
+
+    /**
      * 添加 item
      */
     private void addItemViews() {
@@ -192,85 +266,11 @@ public class AutoGridView extends ViewGroup {
             @Override
             public boolean onLongClick(View v) {
                 if (mItemLongClickListener != null) {
-                    mItemLongClickListener.onItemLongClick(position, v);
+                    return mItemLongClickListener.onItemLongClick(position, v);
                 }
-                return true;
+                return false;
             }
         });
-    }
-
-    /**
-     * 通知刷新
-     */
-    private void notifyChanged() {
-        if (mAdapter != null) {
-            removeAllViews();
-            int totalCount = mAdapter.getCount();
-            if (totalCount == 0) {
-                mCacheBin.clear();
-                return;
-            }
-            for (int i = 0; i < totalCount; i++) {
-                String key = mMode + "_" + mAdapter.getItemViewType(i);
-                // 从缓存器中取出 key 类型的 view 列表
-                List<SoftReference<View>> views = mCacheBin.get(key);
-                /** 此处做简单的缓存复用处理 */
-                if (views != null && views.size() > 0) {
-                    boolean isAdd = false;
-                    for (SoftReference<View> softReference : views) {
-                        if (softReference != null && softReference.get() != null) {
-                            View itemView = softReference.get();
-                            // 如果列表中的 item 还没有父容器，则复用该 item
-                            if (itemView.getParent() == null) {
-                                addItemClickListener(itemView, i);
-                                addItemLongClickListener(itemView, i);
-                                addView(mAdapter.getView(i, itemView, this));
-                                isAdd = true;
-                                break;
-                            }
-                        }
-                    }
-                    // 如果从 views 中未找到匹配的 item ，则新建 item
-                    if (!isAdd) {
-                        View itemView = mAdapter.getView(i, null, this);
-                        // 将新建的 item 存入列表中
-                        views.add(new SoftReference<View>(itemView));
-                        mCacheBin.put(key, views);
-                        addItemClickListener(itemView, i);
-                        addItemLongClickListener(itemView, i);
-                        addView(itemView);
-                    }
-                }
-                // 如果没有 key 类型的 view 存在，则新建 item
-                else {
-                    View itemView = mAdapter.getView(i, null, this);
-                    views = (views != null ? views : new ArrayList<SoftReference<View>>());
-                    views.add(new SoftReference<View>(itemView));
-                    mCacheBin.put(key, views);
-                    addItemClickListener(itemView, i);
-                    addItemLongClickListener(itemView, i);
-                    addView(itemView);
-                }
-            }
-            /** 将多余的没有用到的 item 移除 */
-            for (String key : mCacheBin.keySet()) {
-                List<SoftReference<View>> views = mCacheBin.get(key);
-                if (views != null && views.size() > 0) {
-                    List<SoftReference<View>> tempViews = new ArrayList<SoftReference<View>>();
-                    for (SoftReference<View> softReference : views) {
-                        if (softReference != null && softReference.get() != null) {
-                            if (softReference.get().getParent() == null) {
-                                tempViews.add(softReference);
-                            }
-                        }
-                    }
-                    views.remove(tempViews);
-                    mCacheBin.put(key, views);
-                }
-            }
-        }
-//        invalidate();
-        requestLayout();
     }
 
     @Override
@@ -370,7 +370,7 @@ public class AutoGridView extends ViewGroup {
     }
 
     public interface OnItemLongClickListener {
-        void onItemLongClick(int position, View view);
+        boolean onItemLongClick(int position, View view);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {

@@ -18,8 +18,8 @@ public class BaseAutoGridHolder {
     }
 
     public <T extends View> T findViewById(@IdRes int viewId) {
-        View view = convertView.findViewById(viewId);
-        return (T) view;
+        T view = (T) convertView.findViewById(viewId);
+        return view;
     }
 
     public ImageView getImageView(@IdRes int viewId) {

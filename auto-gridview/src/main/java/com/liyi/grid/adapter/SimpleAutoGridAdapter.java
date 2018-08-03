@@ -28,8 +28,8 @@ public class SimpleAutoGridAdapter<T, K extends BaseAutoGridHolder> extends Quic
     }
 
     private void init() {
-        addItemType(ITEM_TYPE_SINGLE, DEF_LAYOUT_NINE_SINGLE);
-        addItemType(ITEM_TYPE_NORMAL, DEF_LAYOUT_NORMAL);
+        addItemType(ITEM_TYPE_SINGLE, R.layout.auto_grid_item_simple_pic_single);
+        addItemType(ITEM_TYPE_NORMAL, R.layout.auto_grid_item_simple_pic);
         mGridMode = AutoGridMode.GRID_NINE;
     }
 

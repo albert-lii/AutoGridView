@@ -6,8 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.liyi.grid.R;
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
@@ -19,21 +17,18 @@ import java.util.List;
  * 对 BaseAutoGridAdapter 封装后的快捷适配器
  */
 public abstract class QuickAutoGridAdapter<T, K extends BaseAutoGridHolder> extends BaseAutoGridAdapter {
-    protected final int DEF_LAYOUT_NINE_SINGLE = R.layout.auto_grid_item_simple_pic_single;
-    protected final int DEF_LAYOUT_NORMAL = R.layout.auto_grid_item_simple_pic;
     private final int LAYOUT_NOT_FOUND = -404;
 
     private LayoutInflater mLayoutInflater;
     private SparseIntArray mLayoutTypes;
     protected List<T> mData;
 
-
     public QuickAutoGridAdapter() {
 
     }
 
     public void setData(List<T> list) {
-        mData = list;
+        this.mData = list;
     }
 
     public List<T> getData() {

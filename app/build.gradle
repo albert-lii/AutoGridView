@@ -39,5 +39,6 @@ dependencies {
     androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.1', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation project(':auto-gridview')
+    api 'com.liyi.view:auto-gridview:1.1.0'
+//    implementation project(':auto-gridview')
 }
