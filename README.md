@@ -28,7 +28,7 @@ AutoGridView还采用了Adapter模式，使用方式就如同ListView和Adapter�
     }
     
     dependencies {
-         compile 'com.liyi.view:auto-gridview:1.1.0'
+         compile 'com.liyi.view:auto-gridview:1.1.0'
     }
 ```
 - 使用Maven
@@ -36,7 +36,7 @@ AutoGridView还采用了Adapter模式，使用方式就如同ListView和Adapter�
    <dependency>
       <groupId>com.liyi.view</groupId>
       <artifactId>auto-gridview</artifactId>
-      <version>1.1.0</version>
+      <version>1.1.0</version>
       <type>pom</type>
    </dependency>
 ```
