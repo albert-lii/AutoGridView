@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.liyi.grid.AutoGridView;
 import com.liyi.grid.adapter.BaseAutoGridHolder;
@@ -37,17 +36,17 @@ public class QuickAutoGridActivity extends Activity {
 
         public QuickAdapter(List<Integer> list) {
             super();
-            addItemType(0, DEF_LAYOUT_NORMAL);
+            addItemType(0, R.layout.auto_grid_item_simple_pic);
             setData(list);
         }
 
         @Override
-        protected int onHandleViewType(int position) {
+        public int onHandleViewType(int position) {
             return 0;
         }
 
         @Override
-        protected void onHandleView(int position, BaseAutoGridHolder holder, Integer item) {
+        public void onHandleViewHolder(BaseAutoGridHolder holder, int position, Integer item) {
             ImageView imageView = holder.getImageView(R.id.iv_auto_grid_item_simple_pic);
             imageView.setImageResource(item);
         }

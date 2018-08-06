@@ -8,9 +8,44 @@ import android.view.ViewGroup;
 /**
  * AutoGridView 的适配器基类
  */
-public abstract class BaseAutoGridAdapter {
+public abstract class BaseAutoGridAdapter<VH extends BaseAutoGridHolder>  {
     // 被观察者，用来注册观察者
     private final DataSetObservable mDataSetObservable = new DataSetObservable();
+
+    /**
+     * 创建 ViewHolder
+     */
+    public abstract VH onCreateViewHolder(ViewGroup parent, int viewType);
+
+    /**
+     * 绑定 item 的 ViewHolder
+     */
+    public abstract void onBindViewHolder(VH holder, int position);
+
+    /**
+     * 获取 item 的数量
+     */
+    public abstract int getItemCount();
+
+    public int getItemViewType(int position) {
+        return 0;
+    }
+
+    public View getView(int position, View convertView, ViewGroup parent) {
+        int viewType = getItemViewType(position);
+        VH holder = null;
+        if (convertView == null) {
+            holder = onCreateViewHolder(parent, viewType);
+            convertView = holder.getConvertView();
+            convertView.setTag(holder);
+        } else {
+            holder = (VH) convertView.getTag();
+        }
+        holder.setViewType(viewType);
+        onBindViewHolder(holder, position);
+        return convertView;
+    }
+
 
     /**
      * 注册观察者
@@ -36,12 +71,4 @@ public abstract class BaseAutoGridAdapter {
     public void notifyDataSetChanged() {
         mDataSetObservable.notifyChanged();
     }
-
-    public int getItemViewType(int position) {
-        return 0;
-    }
-
-    public abstract View getView(int position, View convertView, ViewGroup parent);
-
-    public abstract int getCount();
 }

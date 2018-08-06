@@ -16,8 +16,8 @@ import java.util.List;
 /**
  * 对 BaseAutoGridAdapter 封装后的快捷适配器
  */
-public abstract class QuickAutoGridAdapter<T, K extends BaseAutoGridHolder> extends BaseAutoGridAdapter {
-    private final int LAYOUT_NOT_FOUND = -404;
+public abstract class QuickAutoGridAdapter<T, VH extends BaseAutoGridHolder> extends BaseAutoGridAdapter<VH> {
+    private static final int LAYOUT_NOT_FOUND = -404;
 
     private LayoutInflater mLayoutInflater;
     private SparseIntArray mLayoutTypes;
@@ -53,30 +53,26 @@ public abstract class QuickAutoGridAdapter<T, K extends BaseAutoGridHolder> exte
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public VH onCreateViewHolder(ViewGroup parent, int viewType) {
         if (mLayoutInflater == null) mLayoutInflater = LayoutInflater.from(parent.getContext());
-        T item = mData.get(position);
-        K holder = null;
-        int viewType = getItemViewType(position);
-        if (convertView == null) {
-            convertView = getItemView(getLayoutId(viewType), parent);
-            holder = createBaseItemHolder(convertView);
-            convertView.setTag(holder);
-        } else {
-            holder = (K) convertView.getTag();
-        }
-        onHandleView(position, holder, item);
-        return convertView;
+        View convertView = getItemView(getLayoutId(viewType), parent);
+        VH holder = createBaseViewHolder(convertView);
+        return holder;
     }
 
     @Override
-    public int getCount() {
+    public void onBindViewHolder(VH holder, int position) {
+        onHandleViewHolder(holder, position, mData.get(position));
+    }
+
+    @Override
+    public int getItemCount() {
         return mData != null ? mData.size() : 0;
     }
 
-    protected abstract int onHandleViewType(int position);
+    public abstract int onHandleViewType(int position);
 
-    protected abstract void onHandleView(int position, K holder, T item);
+    public abstract void onHandleViewHolder(VH holder, int position, T item);
 
     protected View getItemView(int layoutResId, ViewGroup parent) {
         if (layoutResId != LAYOUT_NOT_FOUND) {
@@ -89,36 +85,36 @@ public abstract class QuickAutoGridAdapter<T, K extends BaseAutoGridHolder> exte
         return mLayoutTypes.get(vieType, LAYOUT_NOT_FOUND);
     }
 
-    protected K createBaseItemHolder(View view) {
+    protected VH createBaseViewHolder(View view) {
         Class temp = getClass();
         Class z = null;
         while (z == null && null != temp) {
             z = getInstancedGenericKClass(temp);
             temp = temp.getSuperclass();
         }
-        K k;
+        VH k;
         // 泛型擦除会导致 z 为 null
         if (z == null) {
-            k = (K) new BaseAutoGridHolder(view);
+            k = (VH) new BaseAutoGridHolder(view);
         } else {
             k = createGenericKInstance(z, view);
         }
-        return k != null ? k : (K) new BaseAutoGridHolder(view);
+        return k != null ? k : (VH) new BaseAutoGridHolder(view);
     }
 
     @SuppressWarnings("unchecked")
-    private K createGenericKInstance(Class z, View view) {
+    private VH createGenericKInstance(Class z, View view) {
         try {
             Constructor constructor;
             // inner and unstatic class
             if (z.isMemberClass() && !Modifier.isStatic(z.getModifiers())) {
                 constructor = z.getDeclaredConstructor(getClass(), View.class);
                 constructor.setAccessible(true);
-                return (K) constructor.newInstance(this, view);
+                return (VH) constructor.newInstance(this, view);
             } else {
                 constructor = z.getDeclaredConstructor(View.class);
                 constructor.setAccessible(true);
-                return (K) constructor.newInstance(view);
+                return (VH) constructor.newInstance(view);
             }
         } catch (NoSuchMethodException e) {
             e.printStackTrace();

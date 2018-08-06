@@ -68,6 +68,8 @@ public class AutoGridView extends ViewGroup {
     private SizeParam mSizeParam;
     // SizeHelper 中计算结果后，返回的结果类
     private SizeInfo mSizeInfo;
+    // 缓存 item 的 viewType
+    private ArrayList<String> mCacheTypeBin;
     // 缓存器，存储 item，用于复用
     private HashMap<String, List<SoftReference<View>>> mCacheBin;
     private AdapterObserver mDataSetObserver;
@@ -119,7 +121,6 @@ public class AutoGridView extends ViewGroup {
         mNineSingleHeightPer = DEF_SINGLE_HEIGHT_PERCENT;
 
         mSizeHelper = new SizeHelper();
-        mCacheBin = new HashMap<String, List<SoftReference<View>>>();
     }
 
     public void setAdapter(BaseAutoGridAdapter adapter) {
@@ -129,14 +130,19 @@ public class AutoGridView extends ViewGroup {
         }
         removeAllViews();
         // 清空缓存器
-        mCacheBin.clear();
+        if (mCacheTypeBin != null) {
+            mCacheTypeBin.clear();
+        }
+        if (mCacheBin != null) {
+            mCacheBin.clear();
+        }
         // 重置 adapter
         mAdapter = adapter;
         if (mAdapter != null) {
             mDataSetObserver = new AdapterObserver();
             // 注册观察者
             mAdapter.registerDataSetObserver(mDataSetObserver);
-            if (mAdapter.getCount() > 0) {
+            if (mAdapter.getItemCount() > 0) {
                 addItemViews();
             }
         }
@@ -147,19 +153,34 @@ public class AutoGridView extends ViewGroup {
      */
     private void notifyChanged() {
         if (mAdapter != null) {
-            removeAllViews();
-            int totalCount = mAdapter.getCount();
-            if (totalCount == 0) {
-                mCacheBin.clear();
-                return;
+            int newSize = mAdapter.getItemCount();
+            if (newSize == 0) {
+                if (mCacheTypeBin != null) {
+                    mCacheTypeBin.clear();
+                }
+                if (mCacheBin != null) {
+                    mCacheBin.clear();
+                }
+            } else {
+                if (mCacheBin == null) mCacheBin = new HashMap<>();
+                for (int i = 0, len = mCacheTypeBin.size(); i < len; i++) {
+                    String key = mCacheTypeBin.get(i);
+                    List<SoftReference<View>> views = mCacheBin.get(key);
+                    views = (views != null ? views : new ArrayList<SoftReference<View>>());
+                    views.add(new SoftReference<View>(getChildAt(i)));
+                    mCacheBin.put(key, views);
+                }
             }
-            for (int i = 0; i < totalCount; i++) {
+            removeAllViews();
+            mCacheTypeBin.clear();
+            for (int i = 0; i < newSize; i++) {
                 String key = mMode + "_" + mAdapter.getItemViewType(i);
+                mCacheTypeBin.add(key);
                 // 从缓存器中取出 key 类型的 view 列表
                 List<SoftReference<View>> views = mCacheBin.get(key);
                 /** 此处做简单的缓存复用处理 */
                 if (views != null && views.size() > 0) {
-                    boolean isAdd = false;
+                    boolean isAddItem = false;
                     for (SoftReference<View> softReference : views) {
                         if (softReference != null && softReference.get() != null) {
                             View itemView = softReference.get();
@@ -168,17 +189,18 @@ public class AutoGridView extends ViewGroup {
                                 addItemClickListener(itemView, i);
                                 addItemLongClickListener(itemView, i);
                                 addView(mAdapter.getView(i, itemView, this), new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-                                isAdd = true;
+                                isAddItem = true;
+                                views.remove(itemView);
+                                mCacheBin.put(key, views);
                                 break;
                             }
                         }
                     }
                     // 如果从 views 中未找到匹配的 item ，则新建 item
-                    if (!isAdd) {
+                    if (!isAddItem) {
                         View itemView = mAdapter.getView(i, null, this);
                         // 将新建的 item 存入列表中
                         views.add(new SoftReference<View>(itemView));
-                        mCacheBin.put(key, views);
                         addItemClickListener(itemView, i);
                         addItemLongClickListener(itemView, i);
                         addView(itemView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
@@ -189,27 +211,13 @@ public class AutoGridView extends ViewGroup {
                     View itemView = mAdapter.getView(i, null, this);
                     views = (views != null ? views : new ArrayList<SoftReference<View>>());
                     views.add(new SoftReference<View>(itemView));
-                    mCacheBin.put(key, views);
                     addItemClickListener(itemView, i);
                     addItemLongClickListener(itemView, i);
                     addView(itemView, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
                 }
             }
-            /** 将多余的没有用到的 item 移除 */
-            for (String key : mCacheBin.keySet()) {
-                List<SoftReference<View>> views = mCacheBin.get(key);
-                if (views != null && views.size() > 0) {
-                    List<SoftReference<View>> tempViews = new ArrayList<SoftReference<View>>();
-                    for (SoftReference<View> softReference : views) {
-                        if (softReference != null && softReference.get() != null) {
-                            if (softReference.get().getParent() == null) {
-                                tempViews.add(softReference);
-                            }
-                        }
-                    }
-                    views.remove(tempViews);
-                    mCacheBin.put(key, views);
-                }
+            if (mCacheBin != null && mCacheBin.size() > 0) {
+                mCacheBin.clear();
             }
         }
         requestLayout();
@@ -220,16 +228,14 @@ public class AutoGridView extends ViewGroup {
      * 添加 item
      */
     private void addItemViews() {
-        int totalCount = mAdapter.getCount();
+        int totalCount = mAdapter.getItemCount();
         int maxCount = mRow * mColumn;
         int childCount = totalCount > maxCount ? maxCount : totalCount;
+        if (mCacheTypeBin == null) mCacheTypeBin = new ArrayList<>();
         for (int i = 0; i < childCount; i++) {
             View itemView = mAdapter.getView(i, null, this);
             String key = mMode + "_" + mAdapter.getItemViewType(i);
-            List<SoftReference<View>> views = mCacheBin.get(key);
-            views = (views != null ? views : new ArrayList<SoftReference<View>>());
-            views.add(new SoftReference<View>(itemView));
-            mCacheBin.put(key, views);
+            mCacheTypeBin.add(key);
             addItemClickListener(itemView, i);
             addItemLongClickListener(itemView, i);
             /** 一定要有 LayoutParams ，addView 的时候，item 在 xml 中的 width 和 height 设置的值，都是没效果的（变成 wrap_content ），
@@ -458,5 +464,26 @@ public class AutoGridView extends ViewGroup {
         public void onInvalidated() {
             super.onInvalidated();
         }
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        if (mAdapter != null) {
+            if (mDataSetObserver != null) {
+                mAdapter.unregisterDataSetObserver(mDataSetObserver);
+            }
+            mAdapter = null;
+        }
+        if (mCacheTypeBin != null) {
+            mCacheTypeBin.clear();
+            mCacheTypeBin = null;
+        }
+        if (mCacheBin != null) {
+            mCacheBin.clear();
+            mCacheBin = null;
+        }
+        mItemClickListener = null;
+        mItemLongClickListener = null;
+        super.onDetachedFromWindow();
     }
 }

@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * 对 QuickAutoGridAdapter 封装后的简用适配器
  */
-public class SimpleAutoGridAdapter<T, K extends BaseAutoGridHolder> extends QuickAutoGridAdapter<T, K> {
+public class SimpleAutoGridAdapter<T, VH extends BaseAutoGridHolder> extends QuickAutoGridAdapter<T, VH> {
     // item 类型
     private final int ITEM_TYPE_SINGLE = 0;
     private final int ITEM_TYPE_NORMAL = 1;
@@ -42,10 +42,10 @@ public class SimpleAutoGridAdapter<T, K extends BaseAutoGridHolder> extends Quic
     }
 
     @Override
-    protected int onHandleViewType(int position) {
+    public int onHandleViewType(int position) {
         int viewType;
         if (mGridMode == AutoGridMode.GRID_NINE) {
-            if (getCount() == 1) {
+            if (getItemCount() == 1) {
                 viewType = ITEM_TYPE_SINGLE;
             } else {
                 viewType = ITEM_TYPE_NORMAL;
@@ -57,7 +57,7 @@ public class SimpleAutoGridAdapter<T, K extends BaseAutoGridHolder> extends Quic
     }
 
     @Override
-    protected void onHandleView(int position, K holder, T item) {
+    public void onHandleViewHolder(VH holder, int position, T item) {
         if (mImageLoader != null) {
             mImageLoader.onLoadImage(position, item, holder.getImageView(R.id.iv_auto_grid_item_simple_pic));
         }

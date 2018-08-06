@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 public class BaseAutoGridHolder {
     private View convertView;
+    private int mViewType;
 
     public BaseAutoGridHolder(final View convertView) {
         this.convertView = convertView;
@@ -28,5 +29,13 @@ public class BaseAutoGridHolder {
 
     public TextView getTextView(@IdRes int viewId) {
         return findViewById(viewId);
+    }
+
+    public int getViewType() {
+        return mViewType;
+    }
+
+    public void setViewType(int viewType) {
+        this.mViewType = viewType;
     }
 }
