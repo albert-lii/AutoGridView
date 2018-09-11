@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AutoGridView.iml" filepath="$PROJECT_DIR$/AutoGridView.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AutoGridView.iml" filepath="$PROJECT_DIR$/AutoGridView.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/auto-gridview/auto-gridview.iml" filepath="$PROJECT_DIR$/auto-gridview/auto-gridview.iml" />
       <module fileurl="file://$PROJECT_DIR$/auto-gridview/auto-gridview.iml" filepath="$PROJECT_DIR$/auto-gridview/auto-gridview.iml" />
     </modules>
   </component>

@@ -34,4 +34,14 @@
         android:onClick="onClick"
         android:text="简用适配器"
         android:textColor="#ffffff" />
+
+    <Button
+        android:id="@+id/btn_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
+        android:background="#000000"
+        android:onClick="onClick"
+        android:text="RecyclerView"
+        android:textColor="#ffffff" />
 </LinearLayout>

@@ -26,6 +26,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_simple:
                 startActivity(new Intent(this, SimpleAutoGridActivity.class));
                 break;
+            case R.id.btn_recyclerview:
+                startActivity(new Intent(this, RecyclerListActivity.class));
+                break;
         }
     }
 }

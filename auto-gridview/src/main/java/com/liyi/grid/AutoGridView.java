@@ -97,14 +97,14 @@ public class AutoGridView extends ViewGroup {
         if (attrs != null) {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.AutoGridView);
             if (a != null) {
-                mMode = a.getInt(R.styleable.AutoGridView_agv_mode, mMode);
-                mRow = a.getInt(R.styleable.AutoGridView_agv_row, mRow);
-                mColumn = a.getInt(R.styleable.AutoGridView_agv_column, mColumn);
-                mItemHeight = a.getDimension(R.styleable.AutoGridView_agv_item_height, mItemHeight);
-                mHorizontalSpace = a.getDimension(R.styleable.AutoGridView_agv_horizontal_space, mHorizontalSpace);
-                mVerticalSpace = a.getDimension(R.styleable.AutoGridView_agv_vertical_space, mVerticalSpace);
-                mNineSingleWidthPer = a.getFloat(R.styleable.AutoGridView_agv_nines_widthper, mNineSingleWidthPer);
-                mNineSingleHeightPer = a.getFloat(R.styleable.AutoGridView_agv_nines_heightper, mNineSingleHeightPer);
+                mMode = a.getInt(R.styleable.AutoGridView_agv_mode, DEF_MODE);
+                mRow = a.getInt(R.styleable.AutoGridView_agv_row, DEF_ROW);
+                mColumn = a.getInt(R.styleable.AutoGridView_agv_column, DEF_COLUMN);
+                mItemHeight = a.getDimension(R.styleable.AutoGridView_agv_item_height, DEF_ITEM_HEIGHT);
+                mHorizontalSpace = a.getDimension(R.styleable.AutoGridView_agv_horizontal_space, DEF_HORIZONTAL_SPACE);
+                mVerticalSpace = a.getDimension(R.styleable.AutoGridView_agv_vertical_space, DEF_VERTICAL_SPACE);
+                mNineSingleWidthPer = a.getFloat(R.styleable.AutoGridView_agv_nines_widthper, DEF_SINGLE_WIDTH_PERCENT);
+                mNineSingleHeightPer = a.getFloat(R.styleable.AutoGridView_agv_nines_heightper, DEF_SINGLE_HEIGHT_PERCENT);
                 a.recycle();
             }
         }
@@ -313,19 +313,19 @@ public class AutoGridView extends ViewGroup {
             int childWms, childHms;
             // 宽度自适应
             if (mNineSingleWidthPer == INVALID_VAL) {
+                // child 的宽度介于 0 到 父容器的最大宽度之间
                 childWms = MeasureSpec.makeMeasureSpec(maxWidth, MeasureSpec.AT_MOST);
             } else {
                 childWms = MeasureSpec.makeMeasureSpec((int) mSizeInfo.getChildWidth(), MeasureSpec.EXACTLY);
             }
             // 高度自适应
             if (mNineSingleHeightPer == INVALID_VAL) {
+                // child 可以获取它想要的高度
                 childHms = MeasureSpec.makeMeasureSpec((int) mSizeInfo.getChildHeight(), MeasureSpec.UNSPECIFIED);
             } else {
                 childHms = MeasureSpec.makeMeasureSpec((int) mSizeInfo.getChildHeight(), MeasureSpec.EXACTLY);
             }
             child.measure(childWms, childHms);
-//            child.measure(MeasureSpec.makeMeasureSpec(width, MeasureSpec.AT_MOST),
-//                    MeasureSpec.makeMeasureSpec((int) mSizeInfo.getChildHeight(), MeasureSpec.EXACTLY));
             int cw = child.getMeasuredWidth() == 0 ? maxWidth : child.getMeasuredWidth();
             int ch = child.getMeasuredHeight() == 0 ? (int) (0.6 * maxWidth) : child.getMeasuredHeight();
             mSizeInfo.setChildWidth(cw);
@@ -342,9 +342,7 @@ public class AutoGridView extends ViewGroup {
             }
         }
 
-        /** 一定要测量 child ，否则 child 不显示；另外，测量 child 时，当 viewGroup 设置 padding 时，child 也会被加上 padding */
-//        measureChildren(MeasureSpec.makeMeasureSpec((int) mSizeInfo.getChildWidth(), MeasureSpec.EXACTLY),
-//                MeasureSpec.makeMeasureSpec((int) mSizeInfo.getChildHeight(), MeasureSpec.EXACTLY));
+        // 测量 AutoGridView 的大小
         if (mSizeInfo != null) {
             int widthMeasure = (int) (mSizeInfo.getParentWidth() + getPaddingLeft() + getPaddingRight());
             int heightMeasure = (int) (mSizeInfo.getParentHeight() + getPaddingTop() + getPaddingBottom());
@@ -359,6 +357,7 @@ public class AutoGridView extends ViewGroup {
         if (mAdapter == null || getChildCount() == 0 || mSizeInfo == null) {
             return;
         }
+        // 遍历 child，设置每个 child 所在的位置
         int childCount = getChildCount();
         for (int i = 0; i < childCount; i++) {
             int[] position = mSizeHelper.findPosition(mSizeInfo, i);

@@ -13,9 +13,7 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.List;
 
-/**
- * 对 BaseAutoGridAdapter 封装后的快捷适配器
- */
+
 public abstract class QuickAutoGridAdapter<T, VH extends BaseAutoGridHolder> extends BaseAutoGridAdapter<VH> {
     private static final int LAYOUT_NOT_FOUND = -404;
 
