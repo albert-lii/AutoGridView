@@ -172,7 +172,9 @@ public class AutoGridView extends ViewGroup {
                 }
             }
             removeAllViews();
-            mCacheTypeBin.clear();
+            if (mCacheTypeBin != null) {
+                mCacheTypeBin.clear();
+            }
             for (int i = 0; i < newSize; i++) {
                 String key = mMode + "_" + mAdapter.getItemViewType(i);
                 mCacheTypeBin.add(key);
