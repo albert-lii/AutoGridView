@@ -85,6 +85,17 @@ autoGridVi.setAdapter(mAdapter);
 ## 赞赏
 如果你感觉 `AutoGridView` 帮助到了你，可以点右上角 "Star" 支持一下哦！:blush:
 
+
+## 微信公众号
+有兴趣的同学可以关注微信公众号「**Code满满**」或者笔者的个人博客[「**李益的小站**」](https://www.liyisite.com/)
+<div>
+<img src="wxgzh-qrcode.jpg" width="20%">
+</div>
+
+## 其他平台
+- **简书**：[李益99](https://www.jianshu.com/u/fe3e28b3a55d)
+- **CSDN**：[李益99](https://blog.csdn.net/liyi1009365545?spm=1010.2135.3001.5343)
+
 ## LICENSE
 Copyright 2017 liyi
 
